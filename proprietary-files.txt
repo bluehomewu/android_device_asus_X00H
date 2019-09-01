@@ -1554,6 +1554,9 @@ vendor/lib64/libvendor.goodix.hardware.fingerprint@1.0-service.so
 vendor/lib64/libvendor.goodix.hardware.fingerprint@1.0.so
 vendor/lib64/vendor.qti.hardware.fingerprint@1.0.so
 
+# Fingerprint (VNDK) - from AOSP 10.0 (built from source)
+vendor/lib64/vndk/libbinder.so|b3c4906178fb354cf5bda422910469f76a7d295c
+
 # Firmware
 etc/firmware/ice40.bin:vendor/firmware/ice40.bin
 vendor/firmware/a225p5_pm4.fw
