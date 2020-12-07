@@ -13,10 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Inherit 64bit support
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-
 # Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_n_mr1.mk)
 
@@ -26,18 +24,16 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 # Inherit from X00H device
 $(call inherit-product, $(LOCAL_PATH)/device.mk)
 
-# Installs gsi keys into ramdisk, to boot a GSI with verified boot.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
-
 PRODUCT_BRAND := asus
 PRODUCT_DEVICE := X00H
 PRODUCT_MANUFACTURER := asus
 PRODUCT_NAME := lineage_X00H
-PRODUCT_MODEL := Zenfone 4 Max
+PRODUCT_MODEL := X00HD_4
 
 PRODUCT_GMS_CLIENTID_BASE := android-asus
-TARGET_VENDOR := asus
-TARGET_VENDOR_PRODUCT_NAME := X00HD
+
+TARGET_VENDOR_PRODUCT_NAME := X00HD_4
+
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="msm8937_64-user 9 PKQ1.181203.001 16.0200.1907.18-20190817 release-keys"
 
