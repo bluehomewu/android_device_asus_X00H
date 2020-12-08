@@ -34,8 +34,5 @@ TARGET_KERNEL_CONFIG := X00H_defconfig
 # Recovery 
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom 
 
-# Sepolicy
-BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
-
 # Inherit from the proprietary version
 -include vendor/asus/X00H/BoardConfigVendor.mk
