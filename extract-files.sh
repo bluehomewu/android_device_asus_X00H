@@ -52,6 +52,7 @@ patchelf --replace-needed "libkeystore_binder.so" "libkeystore_binder_vendor.so"
 
 for blob in hw/fingerprint.default.so libgoodixfingerprintd_binder.so libvendor.goodix.hardware.fingerprint@1.0-service.so; do
     patchelf --replace-needed "libbacktrace.so" "libbacktrace_vendor.so" "$DEVICE_BLOB_ROOT/vendor/lib64/$blob"
+    patchelf --replace-needed "libbinder.so" "libbinder-v28.so" "$DEVICE_BLOB_ROOT/vendor/lib64/$blob"
     patchelf --replace-needed "libkeystore_binder.so" "libkeystore_binder_vendor.so" "$DEVICE_BLOB_ROOT/vendor/lib64/$blob"
     patchelf --replace-needed "libunwind.so" "libunwind_vendor.so" "$DEVICE_BLOB_ROOT/vendor/lib64/$blob"
 done

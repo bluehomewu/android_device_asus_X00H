@@ -44,6 +44,9 @@ EXTRA_VENDOR_LIBRARIES += \
     libbacktrace_vendor \
     libkeystore_binder_vendor
 
+PRODUCT_COPY_FILES += \
+    prebuilts/vndk/v28/arm64/arch-arm64-armv8-a/shared/vndk-core/libbinder.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libbinder-v28.so
+
 # Gatekeeper
 PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0-impl \
