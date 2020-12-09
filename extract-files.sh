@@ -38,21 +38,26 @@ if [[ ! -d "$MY_DIR" ]]; then MY_DIR="$PWD"; fi
 LINEAGE_ROOT="$MY_DIR"/../../..
 DEVICE_BLOB_ROOT="$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary
 
+if [ -z "$PATCHELF" ]; then
+    HOST="$(uname | tr '[:upper:]' '[:lower:]')"
+    PATCHELF="$LINEAGE_ROOT"/prebuilts/tools-lineage/${HOST}-x86/bin/patchelf
+fi
+
 sed -i "s|/system/etc/firmware|/vendor/firmware\x0\x0\x0\x0|g" "$DEVICE_BLOB_ROOT/vendor/lib64/libgf_ca.so"
 
 for blob in libarcsoft_hdr.so libarcsoft_nighthawk.so libarcsoft_night_shot.so libarcsoft_panorama_burstcapture.so libarcsoft_videostab.so libmpbase.so; do
-    patchelf --remove-needed "libandroid.so" "$DEVICE_BLOB_ROOT/vendor/lib/$blob"
+    "${PATCHELF}" --remove-needed "libandroid.so" "$DEVICE_BLOB_ROOT/vendor/lib/$blob"
 done
 
 for blob in hw/camera.msm8937.so libcamera_client.so; do
-    patchelf --replace-needed "libgui.so" "libgui_vendor.so" "$DEVICE_BLOB_ROOT/vendor/lib/$blob"
+    "${PATCHELF}" --replace-needed "libgui.so" "libgui_vendor.so" "$DEVICE_BLOB_ROOT/vendor/lib/$blob"
 done
 
-patchelf --replace-needed "libkeystore_binder.so" "libkeystore_binder_vendor.so" "$DEVICE_BLOB_ROOT/vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service"
+"${PATCHELF}" --replace-needed "libkeystore_binder.so" "libkeystore_binder_vendor.so" "$DEVICE_BLOB_ROOT/vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service"
 
 for blob in hw/fingerprint.default.so libgoodixfingerprintd_binder.so libvendor.goodix.hardware.fingerprint@1.0-service.so; do
-    patchelf --replace-needed "libbacktrace.so" "libbacktrace_vendor.so" "$DEVICE_BLOB_ROOT/vendor/lib64/$blob"
-    patchelf --replace-needed "libbinder.so" "libbinder-v28.so" "$DEVICE_BLOB_ROOT/vendor/lib64/$blob"
-    patchelf --replace-needed "libkeystore_binder.so" "libkeystore_binder_vendor.so" "$DEVICE_BLOB_ROOT/vendor/lib64/$blob"
-    patchelf --replace-needed "libunwind.so" "libunwind_vendor.so" "$DEVICE_BLOB_ROOT/vendor/lib64/$blob"
+    "${PATCHELF}" --replace-needed "libbacktrace.so" "libbacktrace_vendor.so" "$DEVICE_BLOB_ROOT/vendor/lib64/$blob"
+    "${PATCHELF}" --replace-needed "libbinder.so" "libbinder-v28.so" "$DEVICE_BLOB_ROOT/vendor/lib64/$blob"
+    "${PATCHELF}" --replace-needed "libkeystore_binder.so" "libkeystore_binder_vendor.so" "$DEVICE_BLOB_ROOT/vendor/lib64/$blob"
+    "${PATCHELF}" --replace-needed "libunwind.so" "libunwind_vendor.so" "$DEVICE_BLOB_ROOT/vendor/lib64/$blob"
 done
