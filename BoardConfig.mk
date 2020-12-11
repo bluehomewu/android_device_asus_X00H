@@ -37,5 +37,8 @@ TARGET_KERNEL_CONFIG := X00H_defconfig
 # Recovery 
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom 
 
+# VNDK
+BOARD_VNDK_RUNTIME_DISABLE := true
+
 # Inherit from the proprietary version
 -include vendor/asus/X00H/BoardConfigVendor.mk

@@ -15,34 +15,6 @@
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_SHARED_LIBRARIES := libbacktrace
-LOCAL_MODULE := libbacktrace_static
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := STATIC_LIBRARIES
-include $(BUILD_STATIC_LIBRARY)
-
-include $(CLEAR_VARS)
-LOCAL_STATIC_LIBRARIES := libbacktrace_static
-LOCAL_MODULE := libbacktrace_vendor
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES
-include $(BUILD_SHARED_LIBRARY)
-
-include $(CLEAR_VARS)
-LOCAL_SHARED_LIBRARIES := libkeystore_binder
-LOCAL_MODULE := libkeystore_binder_static
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := STATIC_LIBRARIES
-include $(BUILD_STATIC_LIBRARY)
-
-include $(CLEAR_VARS)
-LOCAL_STATIC_LIBRARIES := libkeystore_binder_static
-LOCAL_MODULE := libkeystore_binder_vendor
-LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_CLASS := SHARED_LIBRARIES
-include $(BUILD_SHARED_LIBRARY)
-
-include $(CLEAR_VARS)
 LOCAL_STATIC_LIBRARIES := libunwind_static
 LOCAL_MODULE := libunwind_vendor
 LOCAL_MODULE_TAGS := optional

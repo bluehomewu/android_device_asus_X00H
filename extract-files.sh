@@ -53,11 +53,7 @@ for blob in hw/camera.msm8937.so libcamera_client.so; do
     "${PATCHELF}" --replace-needed "libgui.so" "libgui_vendor.so" "$DEVICE_BLOB_ROOT/vendor/lib/$blob"
 done
 
-"${PATCHELF}" --replace-needed "libkeystore_binder.so" "libkeystore_binder_vendor.so" "$DEVICE_BLOB_ROOT/vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service"
-
 for blob in hw/fingerprint.default.so libgoodixfingerprintd_binder.so libvendor.goodix.hardware.fingerprint@1.0-service.so; do
-    "${PATCHELF}" --replace-needed "libbacktrace.so" "libbacktrace_vendor.so" "$DEVICE_BLOB_ROOT/vendor/lib64/$blob"
     "${PATCHELF}" --replace-needed "libbinder.so" "libbinder-v28.so" "$DEVICE_BLOB_ROOT/vendor/lib64/$blob"
-    "${PATCHELF}" --replace-needed "libkeystore_binder.so" "libkeystore_binder_vendor.so" "$DEVICE_BLOB_ROOT/vendor/lib64/$blob"
     "${PATCHELF}" --replace-needed "libunwind.so" "libunwind_vendor.so" "$DEVICE_BLOB_ROOT/vendor/lib64/$blob"
 done
