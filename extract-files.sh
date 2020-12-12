@@ -35,12 +35,12 @@ export DEVICE_BRINGUP_YEAR=2020
 MY_DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$MY_DIR" ]]; then MY_DIR="$PWD"; fi
 
-LINEAGE_ROOT="$MY_DIR"/../../..
-DEVICE_BLOB_ROOT="$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary
+HAVOC_ROOT="$MY_DIR"/../../..
+DEVICE_BLOB_ROOT="$HAVOC_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary
 
 if [ -z "$PATCHELF" ]; then
     HOST="$(uname | tr '[:upper:]' '[:lower:]')"
-    PATCHELF="$LINEAGE_ROOT"/prebuilts/tools-lineage/${HOST}-x86/bin/patchelf
+    PATCHELF="$HAVOC_ROOT"/prebuilts/tools-havoc/${HOST}-x86/bin/patchelf
 fi
 
 sed -i "s|/system/etc/firmware|/vendor/firmware\x0\x0\x0\x0|g" "$DEVICE_BLOB_ROOT/vendor/lib64/libgf_ca.so"

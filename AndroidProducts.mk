@@ -14,4 +14,4 @@
 # limitations under the License.
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_X00H.mk
+    $(LOCAL_DIR)/havoc_X00H.mk
